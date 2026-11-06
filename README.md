@@ -4,9 +4,8 @@
 **Assignment:** Advanced React Component Architecture & State Management
 **Stack:** React 18 + Vite (Client-Side Rendering)
 
-> **Live demo:** _paste your deployment link here_
-> **GitHub repo:** _paste your repository link here_
-
+   > **Live demo:** https://inventory-dashboard-phi-blue.vercel.app/
+   > **GitHub repo:** https://github.com/hania-shahzad/inventory_dashboard
 ---
 
 ## 1. Features
