@@ -1,0 +1,251 @@
+/* ==========================================================================
+   Global styles - CSS custom properties (variables) drive light/dark themes.
+   ThemeContext sets <html data-theme="light|dark">, which swaps the variables.
+   ========================================================================== */
+
+:root,
+[data-theme="light"] {
+  --bg: #f4f6fb;
+  --surface: #ffffff;
+  --surface-2: #eef1f8;
+  --text: #1c2233;
+  --muted: #667089;
+  --border: #dde2ee;
+  --primary: #4f46e5;
+  --primary-contrast: #ffffff;
+  --success: #15803d;
+  --success-bg: #dcfce7;
+  --warn: #b45309;
+  --warn-bg: #fef3c7;
+  --danger: #b91c1c;
+  --danger-bg: #fee2e2;
+  --shadow: 0 2px 10px rgba(20, 30, 60, 0.07);
+  --radius: 12px;
+}
+
+[data-theme="dark"] {
+  --bg: #0f1320;
+  --surface: #181e31;
+  --surface-2: #222a42;
+  --text: #e8ecf8;
+  --muted: #9aa4c0;
+  --border: #2d3654;
+  --primary: #818cf8;
+  --primary-contrast: #0f1320;
+  --success: #4ade80;
+  --success-bg: #12301f;
+  --warn: #fbbf24;
+  --warn-bg: #3a2e0f;
+  --danger: #f87171;
+  --danger-bg: #3b1616;
+  --shadow: 0 2px 10px rgba(0, 0, 0, 0.4);
+}
+
+*,
+*::before,
+*::after {
+  box-sizing: border-box;
+}
+
+body {
+  margin: 0;
+  font-family: system-ui, -apple-system, "Segoe UI", Roboto, sans-serif;
+  background: var(--bg);
+  color: var(--text);
+  line-height: 1.5;
+  transition: background 0.25s, color 0.25s;
+}
+
+h1, h2, h3 { margin: 0; line-height: 1.25; }
+h1 { font-size: 1.6rem; }
+h2 { font-size: 1.15rem; }
+h3 { font-size: 1.02rem; }
+p { margin: 0; }
+
+.muted { color: var(--muted); font-size: 0.9rem; }
+
+/* ----------------------------- Layout ----------------------------- */
+.app { max-width: 1200px; margin: 0 auto; padding: 1.25rem; }
+
+.app-header {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 1rem;
+  padding-bottom: 1rem;
+  margin-bottom: 1.25rem;
+  border-bottom: 1px solid var(--border);
+}
+
+.layout { display: flex; flex-direction: column; gap: 1.25rem; }
+
+.content {
+  display: grid;
+  grid-template-columns: 340px 1fr;
+  gap: 1.25rem;
+  align-items: start;
+}
+
+.sidebar { display: flex; flex-direction: column; gap: 1.25rem; position: sticky; top: 1rem; }
+.products-section { min-width: 0; }
+.app-footer { text-align: center; margin-top: 2rem; padding-top: 1rem; border-top: 1px solid var(--border); }
+
+/* ----------------------------- Panels ----------------------------- */
+.panel {
+  background: var(--surface);
+  border: 1px solid var(--border);
+  border-radius: var(--radius);
+  padding: 1.1rem;
+  box-shadow: var(--shadow);
+}
+.panel-header { display: flex; justify-content: space-between; align-items: center; margin-bottom: 0.75rem; }
+
+/* ----------------------------- Metrics ---------------------------- */
+.metrics { display: grid; grid-template-columns: repeat(auto-fit, minmax(150px, 1fr)); gap: 0.9rem; }
+.metric {
+  background: var(--surface);
+  border: 1px solid var(--border);
+  border-radius: var(--radius);
+  padding: 0.9rem 1rem;
+  box-shadow: var(--shadow);
+  display: flex;
+  flex-direction: column;
+  gap: 0.2rem;
+}
+.metric strong { font-size: 1.45rem; }
+.metric-label { color: var(--muted); font-size: 0.8rem; text-transform: uppercase; letter-spacing: 0.04em; }
+.metric-warn strong { color: var(--warn); }
+.metric-danger strong { color: var(--danger); }
+
+/* ------------------------------ Forms ----------------------------- */
+.product-form { display: flex; flex-direction: column; gap: 0.8rem; }
+.product-form label { display: flex; flex-direction: column; gap: 0.3rem; font-size: 0.85rem; font-weight: 600; }
+.form-row { display: grid; grid-template-columns: 1fr 1fr; gap: 0.7rem; }
+.form-actions { display: flex; gap: 0.6rem; }
+
+input, select {
+  font: inherit;
+  padding: 0.55rem 0.7rem;
+  border: 1px solid var(--border);
+  border-radius: 8px;
+  background: var(--surface-2);
+  color: var(--text);
+  width: 100%;
+}
+input:focus, select:focus, button:focus-visible {
+  outline: 2px solid var(--primary);
+  outline-offset: 1px;
+}
+.error { color: var(--danger); font-size: 0.8rem; font-weight: 500; }
+
+/* ----------------------------- Buttons ---------------------------- */
+.btn {
+  font: inherit;
+  font-weight: 600;
+  cursor: pointer;
+  padding: 0.5rem 0.95rem;
+  border-radius: 8px;
+  border: 1px solid var(--border);
+  background: var(--surface-2);
+  color: var(--text);
+  transition: transform 0.1s, filter 0.15s;
+}
+.btn:hover:not(:disabled) { filter: brightness(1.06); }
+.btn:active:not(:disabled) { transform: scale(0.97); }
+.btn:disabled { opacity: 0.45; cursor: not-allowed; }
+.btn-primary { background: var(--primary); color: var(--primary-contrast); border-color: transparent; }
+.btn-ghost { background: transparent; }
+.btn-danger { color: var(--danger); border-color: var(--danger); background: transparent; }
+.btn-sm { padding: 0.3rem 0.65rem; font-size: 0.85rem; }
+
+/* --------------------------- Filter bar --------------------------- */
+.filter-bar { display: grid; grid-template-columns: 2fr 1fr 1fr; gap: 0.7rem; }
+.result-count { margin: 0.6rem 0 0.9rem; }
+
+/* ------------------------- Product cards -------------------------- */
+.product-grid { display: grid; grid-template-columns: repeat(auto-fill, minmax(230px, 1fr)); gap: 1rem; }
+
+.card {
+  background: var(--surface);
+  border: 1px solid var(--border);
+  border-left-width: 4px;
+  border-radius: var(--radius);
+  box-shadow: var(--shadow);
+  display: flex;
+  flex-direction: column;
+  overflow: hidden;
+}
+.card-in { border-left-color: var(--success); }
+.card-low { border-left-color: var(--warn); }
+.card-out { border-left-color: var(--danger); }
+
+.card-header { display: flex; justify-content: space-between; align-items: flex-start; gap: 0.5rem; padding: 0.9rem 1rem 0; }
+.card-body { padding: 0.5rem 1rem 0.9rem; display: flex; flex-direction: column; gap: 0.5rem; flex: 1; }
+.card-footer { display: flex; gap: 0.5rem; padding: 0.7rem 1rem; border-top: 1px solid var(--border); background: var(--surface-2); }
+.price { font-size: 1.25rem; font-weight: 700; }
+
+.stock-control { display: flex; align-items: center; justify-content: space-between; gap: 0.5rem; }
+.qty { font-weight: 600; font-size: 0.9rem; }
+
+/* ----------------------------- Badges ----------------------------- */
+.badge { font-size: 0.72rem; font-weight: 700; padding: 0.2rem 0.55rem; border-radius: 999px; white-space: nowrap; }
+.badge-in { background: var(--success-bg); color: var(--success); }
+.badge-low { background: var(--warn-bg); color: var(--warn); }
+.badge-out { background: var(--danger-bg); color: var(--danger); }
+
+/* --------------------------- Empty state -------------------------- */
+.empty-state {
+  text-align: center;
+  padding: 3rem 1rem;
+  border: 2px dashed var(--border);
+  border-radius: var(--radius);
+  display: flex;
+  flex-direction: column;
+  gap: 0.4rem;
+}
+
+/* --------------------------- Audit logger ------------------------- */
+.audit-list { list-style: none; margin: 0; padding: 0; max-height: 260px; overflow-y: auto; display: flex; flex-direction: column; gap: 0.4rem; }
+.audit-item {
+  display: flex;
+  justify-content: space-between;
+  gap: 0.6rem;
+  padding: 0.45rem 0.6rem;
+  border-radius: 8px;
+  background: var(--surface-2);
+  border-left: 3px solid var(--muted);
+  font-size: 0.85rem;
+}
+.audit-add { border-left-color: var(--success); }
+.audit-update, .audit-stock { border-left-color: var(--primary); }
+.audit-delete { border-left-color: var(--danger); }
+.audit-time { color: var(--muted); font-size: 0.75rem; white-space: nowrap; }
+
+/* ------------------------------ Toast ----------------------------- */
+.toast {
+  position: fixed;
+  right: 1.25rem;
+  bottom: 1.25rem;
+  max-width: 320px;
+  padding: 0.75rem 1rem;
+  border-radius: 10px;
+  background: var(--text);
+  color: var(--bg);
+  font-weight: 600;
+  box-shadow: 0 6px 20px rgba(0, 0, 0, 0.3);
+  animation: slide-in 0.25s ease-out;
+  z-index: 50;
+}
+.toast-delete { background: var(--danger); color: #fff; }
+.toast-add { background: var(--success); color: #fff; }
+@keyframes slide-in { from { transform: translateY(14px); opacity: 0; } to { transform: none; opacity: 1; } }
+
+/* --------------------------- Responsive --------------------------- */
+@media (max-width: 900px) {
+  .content { grid-template-columns: 1fr; }
+  .sidebar { position: static; }
+}
+@media (max-width: 560px) {
+  .filter-bar { grid-template-columns: 1fr; }
+  .app-header { flex-direction: column; align-items: flex-start; }
+}
